@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import Title from './components/Title';
+import Counter from './components/Counter';
+
+import NewYear from './assets/imagem-projeto.avif'
+
+import useCountdown from './hooks/useCountdown';
+
 import './App.css';
 
 function App() {
+  const [day, hour, minute, second] = useCountdown('Jan 1, 2023 00:00:00')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{backgroundImage: `url(${NewYear})`}}>
+      <div className="container">
+        <Title title='Contagem regressiva para 2023' />
+        <div className="countdown-container">
+          <Counter title='Dias' number={day} />
+          <Counter title='Horas' number={hour} />
+          <Counter title='Minutos' number={minute} />
+          <Counter title='Segundos' number={second} />
+        </div>
+      </div>
     </div>
   );
 }
